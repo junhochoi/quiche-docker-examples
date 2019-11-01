@@ -1,4 +1,4 @@
-# A Sample Docker containter for curl + quiche
+# A Sample Docker Container for curl + quiche
 
 To use docker hub image without local build, use
 `junhochoi/quiche-docker-examples:curl` as an image name.
