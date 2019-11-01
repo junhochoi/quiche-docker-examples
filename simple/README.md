@@ -37,6 +37,8 @@ On the other hand server log looks like this:
 [2019-11-01T00:05:39.720209151Z INFO  http3_server] a1910884e4780d88cd5ccd0622aecc9a5416c48f connection collected recv=12 sent=9 lost=0 rtt=6.703525ms cwnd=16938
 ```
 
+Don't forget to kill the container if it's still running.
+
 ## Client
 
 You can use quiche client to access outside hosts.
