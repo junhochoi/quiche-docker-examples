@@ -23,6 +23,8 @@ FROM debian:latest
 
 WORKDIR /quiche
 
+RUN apt-get update && apt-get install -y ca-certificates
+
 # copy binaries and sample certificate for server
 COPY --from=builder /quiche/examples/cert.crt examples/ 
 COPY --from=builder /quiche/examples/cert.key examples/ 

@@ -44,7 +44,7 @@ Don't forget to kill the container if it's still running.
 You can use quiche client to access outside hosts.
 
 ```
-$ docker run -e RUST_LOG=info -t quiche-simple /quiche/http3-client --no-verify https://blog.cloudflare.com
+$ docker run -e RUST_LOG=info -t quiche-simple /quiche/http3-client https://blog.cloudflare.com
 [2019-11-01T00:06:58.518131059Z INFO  http3_client] connecting to 104.18.26.46:443 from 172.17.0.3:49381 with scid 99b575d137ea258fd7e107cb8a0ddfb55459840e
 [2019-11-01T00:06:58.591300466Z INFO  http3_client] sending HTTP request [Header(":method", "GET"), Header(":scheme", "https"), Header(":authority", "blog.cloudflare.com"), Header(":path", "/"), Header("user-agent", "quiche")]
 [2019-11-01T00:06:59.041537656Z INFO  http3_client] got response headers [Header(":status", "200"), Header("date", "Fri, 01 Nov 2019 00:06:58 GMT"), Header("content-type", "text/html; charset=utf-8"), Header("set-cookie", "__cfduid=d261494133a1b9df8483b991d66dbab561572566818; expires=Sat, 31-Oct-20 00:06:58 GMT; path=/; domain=.blog.cloudflare.com; HttpOnly; Secure"), Header("x-powered-by", "Express"), Header("cache-control", "public, max-age=60"), Header("vary", "Accept-Encoding"), Header("cf-cache-status", "REVALIDATED"), Header("expires", "Fri, 01 Nov 2019 00:07:58 GMT"), Header("alt-svc", "h3-23=\":443\"; ma=86400"), Header("expect-ct", "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\""), Header("server", "cloudflare"), Header("cf-ray", "52e9a0384d157f0a-SFO-DOG")] on stream id 0
