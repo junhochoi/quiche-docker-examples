@@ -10,7 +10,8 @@ do
     echo ">> Building $TAGNAME ..."
     cd $dir
     docker build -t $TAGNAME .
-    echo ">> Pushing $TAGNAME ..."
+    echo ">> Pushing $FULLTAGNAME ..."
     docker tag $TAGNAME $FULLTAGNAME
     docker push $FULLTAGNAME
+    cd ..
 done
