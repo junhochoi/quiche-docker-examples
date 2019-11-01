@@ -11,12 +11,13 @@ docker build -t quiche-nginx .
 
 ## Run
 
-This command will run nginx into background.
+The following command will run nginx into background. You may change the command line
+options as follows:
 
-- html root will be host's current directory. Change `$(pwd)` to html root directory.
-- 127.0.0.1:8443/udp will servce http/3 traffic. Change `-p 127.0.0.1:8443:8443/udp` line to change which port of host to listen http3
-- 127.0.0.1:8443/tcp will servce http/2 traffic. Change `-p 127.0.0.1:8443:8443/tcp` line to change which port of host to listen http2
-- 127.0.0.1:8080/tcp will servce http 1.1 (plaintext) traffic. Change `-p 127.0.0.1:8080:8080/tcp` line to change which port of host to listen http
+- Document root directory will be host's current directory. Change `$(pwd)` to other document root directory.
+- `127.0.0.1:8443/udp` will servce http/3 traffic. Change `-p 127.0.0.1:8443:8443/udp` line to change which port of host to listen http3
+- `127.0.0.1:8443/tcp` will servce http/2 traffic. Change `-p 127.0.0.1:8443:8443/tcp` line to change which port of host to listen http2
+- `127.0.0.1:8080/tcp` will servce http 1.1 (plaintext) traffic. Change `-p 127.0.0.1:8080:8080/tcp` line to change which port of host to listen http
 
 ```
 docker run -d -v $(pwd):/usr/local/nginx/html -p 127.0.0.1:8443:8443/udp -p 127.0.0.1:8443:8443/tcp -p 127.0.0.1:8080:8080/tcp -it nginx-quiche
@@ -30,3 +31,5 @@ curl https://127.0.0.1:8080
 curl --http2 -k https://127.0.0.1:8443
 curl --http3 -k https://127.0.0.1:8443
 ```
+
+or you can use curl and simple container in this repository.
