@@ -1,5 +1,8 @@
 # A Sample Docker containter for testing quiche
 
+To use docker hub image without local build, use
+`junhochoi/quiche-docker-examples:simple` as an image name.
+
 ## Build
 
 ```

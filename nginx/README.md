@@ -1,5 +1,8 @@
 # A Sample Docker containter for nginx + quiche
 
+To use docker hub image without local build, use
+`junhochoi/quiche-docker-examples:nginx` as an image name.
+
 ## Build
 
 ```
