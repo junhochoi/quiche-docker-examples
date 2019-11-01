@@ -1,14 +1,14 @@
-# Docker Examples of quiche
+# Docker Examples for quiche
 
-Dockerfile for various quiche use
+Here is a collection of Dockerfile for various quiche use, as the following:
 
 - curl/ curl + quiche for http3 client
 - nginx/ nginx + quiche for http3 server
 - simple/ quiche command line server and clients
 
-Please read readme file in each directory.
+Please read README.md file in each directory for instructions.
 
-Also I pushed those images on Docker hub.
+Also I pushed those images on Docker Hub so you can pull it instead of building locally:
 
 - https://cloud.docker.com/repository/registry-1.docker.io/junhochoi/quiche-docker-examples
 
