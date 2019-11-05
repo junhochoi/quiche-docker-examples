@@ -17,6 +17,7 @@ ENV PATH=/root/.cargo/bin:$PATH
 RUN git clone --recursive https://github.com/cloudflare/quiche.git
 WORKDIR /quiche
 RUN cargo build --release --examples
+RUN cargo test
 
 # setup interop image
 FROM debian:latest
