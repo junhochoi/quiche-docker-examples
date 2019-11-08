@@ -8,7 +8,7 @@ FROM debian:latest AS builder
 # dependencies
 RUN apt-get update && apt-get install -y cmake golang git curl libpcre3-dev zlib1g-dev
 
-# rust need to be installed via rustup since it requires 1.38
+# rust need to be installed via rustup since it requires 1.39
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | \
     sh -s -- --default-toolchain stable -y
 ENV PATH=/root/.cargo/bin:$PATH
