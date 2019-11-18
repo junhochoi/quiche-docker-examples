@@ -1,19 +1,12 @@
 # 
 # nginx + quiche build image
 #
+FROM rust:1.39 AS builder
 
-# build quiche binary
-FROM debian:latest AS builder
-
-# dependencies
+# Dependencies
 RUN apt-get update && apt-get install -y cmake golang git curl libpcre3-dev zlib1g-dev
 
-# rust need to be installed via rustup since it requires 1.39
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | \
-    sh -s -- --default-toolchain stable -y
-ENV PATH=/root/.cargo/bin:$PATH
-
-# build nginx + quiche
+# Build nginx + quiche
 WORKDIR /build
 RUN git clone --recursive https://github.com/cloudflare/quiche.git && \
     curl -q -s https://nginx.org/download/nginx-1.16.1.tar.gz | tar xzf - && \
@@ -29,21 +22,21 @@ RUN ./configure \
     make -j`nproc` && \
     make install
 
-# setup binary image
+# Setup binary image
 FROM debian:latest
 
-# only runtime for nginx and procps
+# Only runtime for nginx and procps
 RUN apt-get update && apt-get install -y ca-certificates libpcre3 zlib1g procps
 
 COPY --from=builder /usr/local/nginx /usr/local/nginx
 COPY --from=builder /build/quiche/examples/cert.* /usr/local/nginx/conf/
 
-# copy sample config
+# Copy sample config
 COPY nginx.conf /usr/local/nginx/conf/nginx.conf
 
 EXPOSE 8080/tcp
 EXPOSE 8443/tcp
 EXPOSE 8443/udp
 
-# run ngnix foreground
+# Run nginx foreground
 ENTRYPOINT [ "/usr/local/nginx/sbin/nginx", "-g", "daemon off;" ]

@@ -1,24 +1,17 @@
 # 
 # curl + quiche build image
 #
+FROM rust:1.39 AS builder
 
-# build quiche binary
-FROM debian:latest AS builder
-
-# dependencies
+# Dependencies
 RUN apt-get update && apt-get install -y cmake golang git curl automake autoconf libtool pkg-config
 
-# rust need to be installed via rustup since it requires 1.39
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | \
-    sh -s -- --default-toolchain stable -y
-ENV PATH=/root/.cargo/bin:$PATH
-
-# build curl + quiche
+# Build curl + quiche
 # https://github.com/curl/curl/blob/master/docs/HTTP3.md
 WORKDIR /build
 RUN git clone --recursive https://github.com/cloudflare/quiche.git
 
-# boringssl
+# Build boringssl
 RUN cd quiche/deps/boringssl && \
     mkdir build && \
     cd build && \
@@ -29,11 +22,11 @@ RUN cd quiche/deps/boringssl && \
     cp build/crypto/libcrypto.a build/ssl/libssl.a .openssl/lib && \
     ln -s $PWD/include .openssl
 
-# quiche
+# Build quiche
 RUN cd quiche && \
     QUICHE_BSSL_PATH=$PWD/deps/boringssl cargo build --release --features pkg-config-meta
 
-# curl
+# Build curl
 RUN git clone https://github.com/curl/curl.git && \
     cd curl && \
     ./buildconf && \
@@ -44,7 +37,7 @@ RUN git clone https://github.com/curl/curl.git && \
     make -j`nproc` && \
     make install
 
-# setup binary image
+# Setup binary image
 FROM debian:latest
 
 RUN apt-get update && apt-get install -y ca-certificates
