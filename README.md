@@ -8,7 +8,21 @@ Here is a collection of Dockerfile for various quiche use, as the following:
 
 Please read README.md file in each directory for instructions.
 
-Also I pushed those images on Docker Hub so you can pull it instead of building locally:
+To build images, please run the following:
+
+```
+$ make
+```
+
+Or you can build individual images, as follows:
+
+```
+$ make simple
+$ make nginx
+$ make curl
+```
+
+Those images are available on Docker Hub so you can pull it instead of building locally:
 
 - https://cloud.docker.com/repository/registry-1.docker.io/junhochoi/quiche-docker-examples
 
