@@ -4,7 +4,7 @@
 FROM rust:1.39 AS builder
 
 # Dependencies
-RUN apt-get update && apt-get install -y cmake golang git curl automake autoconf libtool pkg-config
+RUN apt-get update && apt-get install -y cmake golang curl automake autoconf libtool pkg-config
 
 # Build curl + quiche
 # https://github.com/curl/curl/blob/master/docs/HTTP3.md

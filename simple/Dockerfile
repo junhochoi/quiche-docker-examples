@@ -4,7 +4,7 @@
 FROM rust:1.39 AS builder
 
 # Dependencies
-RUN apt-get update && apt-get install -y cmake golang git
+RUN apt-get update && apt-get install -y cmake golang
 
 # Build quiche
 RUN git clone --recursive https://github.com/cloudflare/quiche.git

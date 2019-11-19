@@ -4,7 +4,7 @@
 FROM rust:1.39 AS builder
 
 # Dependencies
-RUN apt-get update && apt-get install -y cmake golang git curl libpcre3-dev zlib1g-dev
+RUN apt-get update && apt-get install -y cmake golang curl libpcre3-dev zlib1g-dev
 
 # Build nginx + quiche
 WORKDIR /build
