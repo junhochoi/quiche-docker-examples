@@ -1,4 +1,4 @@
-# 
+#
 # nginx + quiche build image
 #
 FROM rust:1.39 AS builder
@@ -14,6 +14,7 @@ RUN git clone --recursive https://github.com/cloudflare/quiche.git && \
 
 WORKDIR /build/nginx-1.16.1
 RUN ./configure \
+        --build="quiche-$(git --git-dir=../quiche/.git rev-parse --short HEAD)" \
    	    --with-http_ssl_module \
    	    --with-http_v2_module \
    	    --with-http_v3_module \

@@ -1,4 +1,4 @@
-# 
+#
 # quiche build image
 #
 FROM rust:1.39 AS builder
