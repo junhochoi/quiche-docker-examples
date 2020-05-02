@@ -1,6 +1,6 @@
 # Docker Examples for quiche
 
-Here is a collection of Dockerfile for various quiche use, as the following:
+Here is a collection of Dockerfiles for various quiche use, as the following:
 
 - curl/ curl + quiche for http3 client
 - nginx/ nginx + quiche for http3 server
